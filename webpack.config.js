@@ -13,6 +13,14 @@ module.exports = {
         options: {
           presets: ["@babel/env", "@babel/preset-flow", "@babel/preset-react"]
         }
+      },
+      {
+        test: /\.scss$/i,
+        use: [
+          'style-loader',
+          'css-loader',
+          'sass-loader'
+        ]
       }
     ]
   },

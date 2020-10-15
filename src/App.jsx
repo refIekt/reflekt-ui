@@ -1,25 +1,35 @@
+// Libraries.
 import React, { Component } from "react";
 import { render } from "react-dom";
 import { hot } from "react-hot-loader";
+// Components.
 import Header from "./Header"
 import Execution from "./Execution"
+// Styles.
+import '../styles/_base.scss'
 
 class App extends Component {
 
   constructor(props) {
     super(props);
 
-    this.state = {}
+    ////
+    // STATE.
+    ////
 
-    window.writeMode = false
+    this.state = {}
+    this.state.writeMode = false
+
+    // Activate write mode.
+    if (window.location.protocol != "file:") {
+      this.state.writeMode = true;
+    }
+
+    ////
+    // EVENT HANDLERS.
+    ////
 
     window.addEventListener('load', (event) => {
-
-      // Activate write mode.
-      if (window.location.protocol != "file:") {
-        window.writeMode = true
-      }
-      this.state.writeMode = window.writeMode;
 
       // Get data.
       this.state.db = JSON.parse(db);
@@ -30,9 +40,17 @@ class App extends Component {
     });
   }
 
+  ////
+  // EVENTS.
+  ////
+
   componentDidMount() {
 
   }
+
+  ////
+  // PROCESSORS.
+  ////
 
   buildExecutions() {
 
@@ -51,7 +69,13 @@ class App extends Component {
     return (
       <>
         <Header writeMode={this.state.writeMode} />
-        <strong>Hello</strong>
+
+        <div className="container">
+          <main id="content">
+            <strong>Hello</strong>
+          </main>
+        </div>
+
       </>
     )
   }

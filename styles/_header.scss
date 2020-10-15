@@ -1,0 +1,30 @@
+#header {
+
+  background: #eeeeee;
+  border-bottom: 1px solid #c9c9c9;
+
+  .container {
+    display: flex;
+    flex-direction: row;
+    padding: 1rem;
+  }
+
+  #logo {
+    width: 50px;
+  }
+
+  #title {
+    display: none;
+  }
+
+  #write-mode {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    padding: 0.5rem 1rem;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    background: linear-gradient(180deg, #fff 0%, #cdcdcd 100%);
+  }
+
+}
