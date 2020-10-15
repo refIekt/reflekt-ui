@@ -4,6 +4,7 @@ import { render } from "react-dom";
 import { hot } from "react-hot-loader";
 // Components.
 import Header from "./Header"
+import Executions from "./Executions"
 import Execution from "./Execution"
 // Styles.
 import '../styles/_base.scss'
@@ -18,6 +19,7 @@ class App extends Component {
     ////
 
     this.state = {}
+    this.state.db = {}
     this.state.writeMode = false
 
     // Activate write mode.
@@ -25,19 +27,6 @@ class App extends Component {
       this.state.writeMode = true;
     }
 
-    ////
-    // EVENT HANDLERS.
-    ////
-
-    window.addEventListener('load', (event) => {
-
-      // Get data.
-      this.state.db = JSON.parse(db);
-
-      // Build data.
-      this.buildExecutions()
-
-    });
   }
 
   ////
@@ -46,16 +35,17 @@ class App extends Component {
 
   componentDidMount() {
 
-  }
+    ////
+    // DATA.
+    ////
 
-  ////
-  // PROCESSORS.
-  ////
+    window.addEventListener('load', (event) => {
 
-  buildExecutions() {
+      // Get data.
+      this.setState({db: JSON.parse(db)});
+      console.log("DATA:");
+      console.log(this.state.db);
 
-    this.state.db.reflections.forEach((reflection) => {
-      //console.log(reflection)
     });
 
   }
@@ -72,7 +62,7 @@ class App extends Component {
 
         <div className="container">
           <main id="content">
-            <strong>Hello</strong>
+            <Executions reflections={this.state.db.reflections} />
           </main>
         </div>
 
