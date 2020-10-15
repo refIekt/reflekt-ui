@@ -10,19 +10,23 @@ class Header extends React.Component {
 
   render() {
 
-    var writeModeLabel = "Read-only";
+    var writeModeLabel = "Read Only";
     if (this.props.writeMode == true) {
-      writeModeLabel = "Read-Write";
+      writeModeLabel = "Server On";
     }
 
     return (
       <header id="header">
         <div className="container">
+
           <img id="logo" src="./Assets/Logo.svg" />
           <h1 id="title">Reflekt</h1>
-          <label id="write-mode" className={(this.props.writeMode ? 'read-write' : 'read-only')}>
-            {writeModeLabel}
-          </label>
+
+          <div id="write-mode" className={(this.props.writeMode ? 'read-write' : 'read-only')}>
+            <label>{writeModeLabel}</label>
+            <div className="icon"></div>
+          </div>
+
         </div>
       </header>
     );

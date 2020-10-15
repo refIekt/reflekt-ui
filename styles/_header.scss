@@ -23,8 +23,16 @@
     margin-left: auto;
     padding: 0.5rem 1rem;
     border: 1px solid #ccc;
-    border-radius: 3px;
-    background: linear-gradient(180deg, #fff 0%, #cdcdcd 100%);
+    border-radius: 5px;
+    background: linear-gradient(180deg, #fff 0%, #ddd 100%);
+    &:hover {
+      cursor: pointer;
+      background: linear-gradient(0deg, #fff 0%, #ddd 100%);      
+    }
+    label {
+      font-weight: bold;
+      text-shadow: 1px 1px 1px #fff;
+    }
   }
 
 }
