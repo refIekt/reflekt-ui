@@ -10,9 +10,9 @@ class Header extends React.Component {
 
   render() {
 
-    var writeModeLabel = "Read Only";
+    var writeModeLabel = "Read-Only";
     if (this.props.writeMode == true) {
-      writeModeLabel = "Server On";
+      writeModeLabel = "Read/Write";
     }
 
     return (

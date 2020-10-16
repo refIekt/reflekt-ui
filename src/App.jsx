@@ -5,7 +5,6 @@ import { hot } from "react-hot-loader";
 // Components.
 import Header from "./Header"
 import Executions from "./Executions"
-import Execution from "./Execution"
 // Styles.
 import '../styles/_base.scss'
 
@@ -20,6 +19,7 @@ class App extends Component {
 
     this.state = {}
     this.state.db = {}
+    this.state.reflections = []
     this.state.writeMode = false
 
     // Activate write mode.
@@ -46,6 +46,9 @@ class App extends Component {
       console.log("DATA:");
       console.log(this.state.db);
 
+      // Process executions.
+      this.setState({reflections: <Executions reflections={this.state.db.reflections} />});
+
     });
 
   }
@@ -62,10 +65,9 @@ class App extends Component {
 
         <div className="container">
           <main id="content">
-            <Executions reflections={this.state.db.reflections} />
+            {this.state.reflections}
           </main>
         </div>
-
       </>
     )
   }
