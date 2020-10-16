@@ -1,0 +1,16 @@
+.reflection {
+  padding: 1rem;
+  background: #EFEFEF;
+  margin-bottom: 1px;
+  .title {
+    color: #777;
+    font-weight: bold;
+    margin-right: 1rem;
+  }
+  .method {
+    margin-right: 1rem;
+  }
+  .actions {
+    float: right;
+  }
+}

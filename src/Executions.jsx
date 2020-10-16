@@ -21,14 +21,17 @@ class Executions extends React.Component {
 
       // When base reflection.
       if (reflection.b == null) {
-        // Build execution with base reflection ID and reflection number as key.
+        // Build execution from base reflection ID and number.
         var key = `${reflection.e}-${reflection.n}`
-        executions[key] = [reflection]
+        executions[key] = {
+          timestamp: reflection.t,
+          reflections: [reflection]
+        }
       }
       // When child reflection.
       else {
         var key = `${reflection.b}-${reflection.n}`
-        executions[key].push(reflection)
+        executions[key]['reflections'].push(reflection)
       }
     });
 
@@ -37,10 +40,8 @@ class Executions extends React.Component {
       unsorted_executions.push(execution);
     });
 
-    console.log(unsorted_executions);
-
-    var sorted_executions = unsorted_executions.sort((a, b) => a[0].t > b[0].t ? 1 : -1);
-
+    // Save sorted executions.
+    var sorted_executions = unsorted_executions.sort((a, b) => a.timestamp > b.timestamp ? 1 : -1);
     this.state.executions = sorted_executions;
 
     console.log(sorted_executions);
