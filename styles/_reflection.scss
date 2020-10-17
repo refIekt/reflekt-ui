@@ -1,16 +1,39 @@
 .reflection {
-  padding: 1rem;
+  border-left: 5px solid #ccc;
   background: #EFEFEF;
   margin-bottom: 1px;
-  .title {
-    color: #777;
-    font-weight: bold;
-    margin-right: 1rem;
+
+  &.pass {
+    border-left-color: #3eb641;
+    background-color: #c3ffbd;
   }
-  .method {
-    margin-right: 1rem;
+  &.fail {
+    border-left-color: #8c3c2f;
+    background-color: #ffc6c1;
   }
-  .actions {
-    float: right;
+
+  .summary {
+    padding: 1rem;
+    .title {
+      color: #777;
+      font-weight: bold;
+      margin-right: 1rem;
+    }
+    .method {
+      font-weight: bold;
+      margin-right: 1rem;
+    }
+    .actions {
+      float: right;
+      button {
+        margin-left: 0.5rem;
+      }
+
+    }
+  }
+
+  .details {
+    padding: 1rem;
+    background: white;
   }
 }

@@ -12,8 +12,8 @@ class Execution extends React.Component {
   render() {
     var options = {year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit'};
     return (
-      <div class="execution">
-        <div class="timestamp">{new Intl.DateTimeFormat('default', options).format(this.props.execution.timestamp * 1000)}</div>
+      <div className="execution">
+        <div className="timestamp">{new Intl.DateTimeFormat('default', options).format(this.props.execution.timestamp * 1000)}</div>
         {this.props.execution.reflections.map((reflection, index) =>
           <Reflection reflection={reflection} key={reflection.r} />
         )}
