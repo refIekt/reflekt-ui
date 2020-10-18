@@ -7,7 +7,7 @@
     cursor: pointer;
   }
 
-  &.open .summary {
+  &.open > .summary {
     margin-bottom: 1rem;
   }
 
