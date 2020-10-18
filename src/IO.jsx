@@ -17,9 +17,11 @@ class IO extends React.Component {
           <div className="io-item">
             <label>Type:</label> {this.props.io[C.TYPE]}
           </div>
-          <div className="io-item">
-            <label>Count:</label> {this.props.io[C.COUNT]}
-          </div>
+          {(this.props.io[C.COUNT] != null ?
+            <div className="io-item">
+              <label>Count:</label> {this.props.io[C.COUNT]}
+            </div>
+          : null )}
           <div className="io-item">
             <label>Value:</label> <pre>{this.props.io[C.VALUE]}</pre>
           </div>

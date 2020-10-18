@@ -2,8 +2,17 @@
   padding: 1rem;
   background: #333;
   margin-bottom: 1px;
-  .timestamp {
-    color: white;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &.open .summary {
     margin-bottom: 1rem;
   }
+
+  .timestamp {
+    color: white;
+  }
+
 }
