@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { hot } from "react-hot-loader";
+import * as C from './Constants';
 import Execution from "./Execution"
 
 class Executions extends React.Component {
@@ -25,13 +26,18 @@ class Executions extends React.Component {
         var key = `${reflection.e}-${reflection.n}`
         executions[key] = {
           timestamp: reflection.t,
-          reflections: [reflection]
+          reflections: [reflection],
+          status: 'pass'
         }
       }
       // When child reflection.
       else {
         var key = `${reflection.b}-${reflection.n}`
         executions[key]['reflections'].push(reflection)
+      }
+
+      if (reflection[C.STATUS] == C.FAIL) {
+        executions[key]['status'] = 'fail';
       }
     });
 

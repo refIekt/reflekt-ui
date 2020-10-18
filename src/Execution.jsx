@@ -22,13 +22,14 @@ class Execution extends React.Component {
   render() {
     var options = {year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit'};
     return (
-      <div className={"execution " + (this.state.open ? 'open' : 'closed')} onClick={this.toggle}>
+      <div className={"execution " + this.props.execution.status + " " + (this.state.open ? 'open' : 'closed')}>
 
-        <div className="summary">
+        <div className="execution--summary" onClick={this.toggle}>
+          <div className="status">{this.props.execution.status}</div>
           <div className="timestamp">{new Intl.DateTimeFormat('default', options).format(this.props.execution.timestamp * 1000)}</div>
         </div>
 
-        <div className="details">
+        <div className="execution--details">
           {(this.state.open ? this.props.execution.reflections.map((reflection, index) =>
             <Reflection reflection={reflection} key={reflection.r} />
           ) : null )}

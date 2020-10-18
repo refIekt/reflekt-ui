@@ -1,18 +1,47 @@
 .execution {
-  padding: 1rem;
   background: #333;
   margin-bottom: 1px;
+  border-left: 5px solid #ccc;
+  &:hover {
+    background: #444545;
+  }
+  // Status.
+  &.pass {
+    border-left-color: #3eb641;
+    .status {
+      color: #3eb641;
+    }
+  }
+  &.fail {
+    border-left-color: #8c3c2f;
+    .status {
+      color: #8c3c2f;
+    }
+  }
+  // Toggle.
+  &.open {
+    background: #333;
+    border-left-color: #333;
+  }
 
+}
+
+.execution--summary {
+  padding: 1rem;
+  padding-left: 11px;
   &:hover {
     cursor: pointer;
   }
-
-  &.open > .summary {
-    margin-bottom: 1rem;
-  }
-
   .timestamp {
     color: white;
   }
+  .status {
+    font-weight: bold;
+    text-transform: uppercase;
+    float: right;
+  }
+}
 
+.execution--details {
+  overflow: auto;
 }
