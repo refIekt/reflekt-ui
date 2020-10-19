@@ -22,7 +22,7 @@ class Header extends React.Component {
       <header id="header">
         <div className="container">
 
-          <img id="logo" src="./Assets/Logo.svg" />
+          <img id="logo" src="./assets/Logo.svg" />
           <h1 id="title">Reflekt</h1>
 
           <div id="write-mode" className={(this.context ? 'read-write' : 'read-only')}>
