@@ -1,4 +1,6 @@
-# App
+# Reflekt UI
+
+A React app that renders reflections in the /reflections directory.
 
 ## Local setup
 
