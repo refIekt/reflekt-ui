@@ -10,8 +10,16 @@ npm ci
 
 ## Development
 
+Client:
 ```
 npm run start
+```
+
+Server:
+```
+cd web
+npm install
+node server.js
 ```
 
 ## Deployment

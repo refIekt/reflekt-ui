@@ -13,14 +13,26 @@ class Reflection extends React.Component {
   constructor(props) {
     super(props);
 
-    console.log(props.reflection);
-
     this.state = {};
     this.state.status = (props.reflection[C.STATUS] == C.PASS ? "pass" : "fail");
   }
 
-  delete(id, e) {
+  keep = (id, event) => {
+    console.log(id);
+    console.log(event);
+    console.log(d);
+  }
 
+  delete = (ref_id, event) => {
+
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ ref_id: ref_id })
+    };
+    fetch('/delete', requestOptions)
+    //  .then(response => response.json())
+    //  .then(data => this.setState({ postId: data.id }));
   }
 
   render() {
@@ -33,21 +45,34 @@ class Reflection extends React.Component {
           <span className="method">{this.props.reflection[C.METHOD]}()</span>
 
           <div className="actions">
-            <button className={"keep " + (this.context ? "enabled" : "disabled")} onClick={(event) => this.keep(id, event)}>Keep</button>
-            <button className={"delete " + (this.context ? "enabled" : "disabled")} onClick={(event) => this.delete(id, event)}>Delete</button>
+
+            <button
+              className={"keep " + (this.context ? "enabled" : "disabled")}
+              onClick={(event) => this.keep(this.props.reflection[C.REF_ID], event)}
+            >Keep
+            </button>
+
+            <button
+              className={"delete " + (this.context ? "enabled" : "disabled")}
+              onClick={(event) => this.delete(this.props.reflection[C.REF_ID], event)}
+            >Delete</button>
+
           </div>
 
         </div>
 
         <div className="reflection--details">
+
           <div className="ios">
             {this.props.reflection[C.INPUT].map((input, index) => {
               <IO io={input} title="Input" key={index}/>
             })}
           </div>
+
           <div className="ios">
             <IO io={this.props.reflection[C.OUTPUT]} title="Output" />
           </div>
+
         </div>
 
       </div>
