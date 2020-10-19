@@ -13,8 +13,10 @@ class Reflection extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {};
-    this.state.status = (props.reflection[C.STATUS] == C.PASS ? "pass" : "fail");
+    this.state = {
+      status: (props.reflection[C.STATUS] == C.PASS ? "pass" : "fail"),
+      hidden: false
+    }
   }
 
   keep = (id, event) => {
@@ -25,19 +27,29 @@ class Reflection extends React.Component {
 
   delete = (ref_id, event) => {
 
+    // Build request.
     const requestOptions = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ ref_id: ref_id })
     };
+
+    // Send request.
     fetch('/delete', requestOptions)
     //  .then(response => response.json())
     //  .then(data => this.setState({ postId: data.id }));
+
+    // Update UI.
+    this.hide(ref_id);
+  }
+
+  hide = (ref_id) => {
+    this.setState({hidden: true});
   }
 
   render() {
     return (
-      <div className={`reflection ${this.state.status}`}>
+      <div className={"reflection " + this.state.status + (this.state.hidden ? ' hidden' : ' visible')}>
 
         <div className="reflection--summary">
 
