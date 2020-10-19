@@ -1,5 +1,5 @@
 {
-  "name": "reflekt-server",
+  "name": "reflekt-ui",
   "version": "1.0.0",
   "description": "Render reflections.",
   "main": "src/index.js",
@@ -15,7 +15,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/refIekt/reflekt-server.git"
+    "url": "git://github.com/refIekt/reflekt-ui.git"
   },
   "author": "Maedi Prichard",
   "devDependencies": {
