@@ -2,24 +2,19 @@
 
 A React app that renders reflections in the /reflections directory.
 
-## Local setup
-
-```
-npm ci
-```
-
 ## Development
 
 Client:
 ```
+npm ci
 npm run start
 ```
 
 Server:
 ```
 cd web
-npm install
-node server.js
+npm ci
+npm run start
 ```
 
 ## Deployment
