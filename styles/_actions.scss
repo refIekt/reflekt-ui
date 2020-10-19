@@ -1,0 +1,28 @@
+.actions {
+  float: right;
+  button {
+    border: none;
+    color: white;
+    background: black;
+    padding: 0.5rem 1rem;
+    margin-left: 0.5rem;
+    border-radius: 0.25rem;
+    &:hover {
+      cursor: pointer;
+      background: #222;
+    }
+    &.keep {
+      background: #45487e;
+    }
+    &.delete {
+      background: #7e3837;
+    }
+    &.disabled {
+      background: #555;
+      &:hover {
+        background: #555;
+        cursor: not-allowed;
+      }
+    }
+  }
+}
