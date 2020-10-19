@@ -20,7 +20,7 @@ class App extends Component {
 
     this.state = {}
     this.state.db = {}
-    this.state.reflections = []
+    this.state.results = []
     this.state.writeMode = false
 
     // Activate write mode.
@@ -48,7 +48,7 @@ class App extends Component {
       console.log(this.state.db);
 
       // Process executions.
-      this.setState({reflections: <Executions reflections={this.state.db.reflections} />});
+      this.setState({results: <Executions reflections={this.state.db.reflections} />});
 
     });
 
@@ -68,7 +68,7 @@ class App extends Component {
 
           <div className="container">
             <main id="content">
-              {this.state.reflections}
+              {this.state.results}
             </main>
           </div>
         </Contexts.WriteModeContext.Provider>
