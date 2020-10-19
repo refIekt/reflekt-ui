@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import { render } from "react-dom";
 import { hot } from "react-hot-loader";
 // Components.
+import * as Contexts from './Contexts';
 import Header from "./Header"
 import Executions from "./Executions"
 // Styles.
@@ -61,13 +62,16 @@ class App extends Component {
 
     return (
       <>
-        <Header writeMode={this.state.writeMode} />
+        <Contexts.WriteModeContext.Provider value={this.state.writeMode}>
 
-        <div className="container">
-          <main id="content">
-            {this.state.reflections}
-          </main>
-        </div>
+          <Header />
+
+          <div className="container">
+            <main id="content">
+              {this.state.reflections}
+            </main>
+          </div>
+        </Contexts.WriteModeContext.Provider>
       </>
     )
   }

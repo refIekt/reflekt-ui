@@ -1,8 +1,11 @@
 import React, { Component } from "react";
 import { hot } from "react-hot-loader";
+import * as Contexts from './Contexts';
 import '../styles/_header.scss'
 
 class Header extends React.Component {
+
+  static contextType = Contexts.WriteModeContext;
 
   constructor(props) {
     super(props);
@@ -11,7 +14,7 @@ class Header extends React.Component {
   render() {
 
     var writeModeLabel = "Read-Only";
-    if (this.props.writeMode == true) {
+    if (this.context == true) {
       writeModeLabel = "Read/Write";
     }
 
@@ -22,7 +25,7 @@ class Header extends React.Component {
           <img id="logo" src="./Assets/Logo.svg" />
           <h1 id="title">Reflekt</h1>
 
-          <div id="write-mode" className={(this.props.writeMode ? 'read-write' : 'read-only')}>
+          <div id="write-mode" className={(this.context ? 'read-write' : 'read-only')}>
             <label>{writeModeLabel}</label>
             <div className="icon"></div>
           </div>
