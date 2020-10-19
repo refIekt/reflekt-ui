@@ -52,7 +52,7 @@ app.post('/delete', (req, res) => {
     console.error(err)
   }
 
-  res.send(200, { message: 'ok' });
+  res.status(200).send({ message: 'ok' });
 
 })
 
