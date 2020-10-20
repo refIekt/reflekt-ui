@@ -35,7 +35,7 @@ class Reflection extends React.Component {
     };
 
     // Send request.
-    fetch('/delete', requestOptions)
+    fetch('/reflections/delete', requestOptions)
     //  .then(response => response.json())
     //  .then(data => this.setState({ postId: data.id }));
 

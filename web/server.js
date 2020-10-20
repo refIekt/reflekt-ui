@@ -17,22 +17,66 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'))
 })
 
-// Handle keep request.
-app.post('/keep', (req, res) => {
-  console.log(req.body);
+////
+// READ.
+////
+
+var load_db = () => {
+
+  const data = fs.readFileSync(db_path);
+  const script = new vm.Script(data);
+  script.runInThisContext();
+  return JSON.parse(db);
+
+}
+
+////
+// DELETE.
+////
+
+// Handle executions delete request.
+app.post('/executions/delete', (req, res) => {
+
+  // Get reflection ID.
+  exe_id = req.body.exe_id;
+
+  // Get database.
+  db = load_db();
+
+  // Delete reflections matching base execution.
+  for (let [index, reflection] of db.reflections.entries()) {
+    if (reflection.e == exe_id) {
+      console.log("DELETED:")
+      console.log(db.reflections[index]);
+      db.reflections.splice(index, 1);
+    }
+    if (reflection.b != null && reflection.b == exe_id) {
+      console.log("DELETED:")
+      console.log(db.reflections[index]);
+      db.reflections.splice(index, 1);
+    }
+  }
+
+  // Save database.
+  try {
+    fs.writeFileSync(db_path, 'var db = ' + JSON.stringify(JSON.stringify(db)) + ';');
+  }
+  catch (err) {
+    console.error(err)
+  }
+
+  res.status(200).send({ message: 'ok' });
+
 })
 
-// Handle delete request.
-app.post('/delete', (req, res) => {
+// Handle reflections delete request.
+app.post('/reflections/delete', (req, res) => {
 
   // Get reflection ID.
   ref_id = req.body.ref_id;
 
   // Get database.
-  var data = fs.readFileSync(db_path);
-  const script = new vm.Script(data);
-  script.runInThisContext();
-  db = JSON.parse(db);
+  db = load_db();
 
   // Delete reflection.
   for (let [index, reflection] of db.reflections.entries()) {
@@ -56,13 +100,19 @@ app.post('/delete', (req, res) => {
 
 })
 
+////
+// UPDATE.
+////
+
+// Handle reflections keep request.
+app.post('/reflections/keep', (req, res) => {
+  console.log(req.body);
+})
+
 // Listen for requests.
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
 })
-
-
-
 
 //fs.readFile('student.json', (err, data) => {
 //  if (err) throw err;

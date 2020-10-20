@@ -10,46 +10,50 @@ class Executions extends React.Component {
 
     this.state = {}
 
-    this.process(props.reflections);
+    this.create_executions(props.reflections);
   }
 
-  // Wrap Reflections inside Executions.
-  process(reflections) {
+  create_executions(reflections) {
 
-    // Build executions.
+    // Group reflections into executions.
     var executions = {};
     reflections.forEach((reflection) => {
 
       // When base reflection.
       if (reflection.b == null) {
-        // Build execution from base reflection ID and number.
+        // Create execution from base reflection.
         var key = `${reflection.e}-${reflection.n}`
         executions[key] = {
+          id: reflection.e,
+          status: 'pass',
           timestamp: reflection.t,
           reflections: [reflection],
-          status: 'pass'
         }
       }
       // When child reflection.
       else {
+        // Add reflection to execution.
         var key = `${reflection.b}-${reflection.n}`
         executions[key]['reflections'].push(reflection)
       }
 
+      // Flag execution as failed when a reflection fails.
       if (reflection[C.STATUS] == C.FAIL) {
         executions[key]['status'] = 'fail';
       }
     });
 
+    // Convert executions to array in order to sort.
     var unsorted_executions = [];
     Object.values(executions).forEach((execution) => {
       unsorted_executions.push(execution);
     });
 
-    // Save sorted executions.
+    // Sort executions.
     var sorted_executions = unsorted_executions.sort((a, b) => a.timestamp > b.timestamp ? 1 : -1);
-    this.state.executions = sorted_executions;
 
+    // Save executions.
+    this.state.executions = sorted_executions;
     console.log(sorted_executions);
 
   }

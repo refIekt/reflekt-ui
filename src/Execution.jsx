@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { hot } from "react-hot-loader";
+import * as C from './Constants';
 import * as Contexts from './Contexts';
 import Reflection from "./Reflection"
 import '../styles/_execution.scss'
@@ -23,6 +24,36 @@ class Execution extends React.Component {
     }));
   };
 
+  keep = (exe_id, event) => {
+
+    event.stopPropagation();
+
+  }
+
+  delete = (exe_id, event) => {
+
+    event.stopPropagation();
+
+    // Build request.
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ exe_id: exe_id })
+    };
+
+    // Send request.
+    fetch('/executions/delete', requestOptions)
+    //  .then(response => response.json())
+    //  .then(data => this.setState({ postId: data.id }));
+
+    // Update UI.
+    this.hide(exe_id);
+  }
+
+  hide = (exe_id) => {
+    this.setState({hidden: true});
+  }
+
   render() {
     var options = {year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit'};
     return (
@@ -34,8 +65,18 @@ class Execution extends React.Component {
           <div className="status">{this.props.execution.status}</div>
 
           <div className="actions">
-            <button className={"keep " + (this.context ? "enabled" : "disabled")} onClick={(event) => this.keep(id, event)}>Keep</button>
-            <button className={"delete " + (this.context ? "enabled" : "disabled")} onClick={(event) => this.delete(id, event)}>Delete</button>
+
+            <button
+              className={"keep " + (this.context ? "enabled" : "disabled")}
+              onClick={(event) => this.keep(this.props.execution.id, event)}
+            >Keep
+            </button>
+
+            <button
+              className={"delete " + (this.context ? "enabled" : "disabled")}
+              onClick={(event) => this.delete(this.props.execution.id, event)}
+            >Delete</button>
+
           </div>
 
         </div>
