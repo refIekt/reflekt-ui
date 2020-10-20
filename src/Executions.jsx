@@ -25,6 +25,7 @@ class Executions extends React.Component {
         var key = `${reflection.e}-${reflection.n}`
         executions[key] = {
           id: reflection.e,
+          number: reflection.n,
           status: 'pass',
           timestamp: reflection.t,
           reflections: [reflection],
@@ -62,7 +63,7 @@ class Executions extends React.Component {
     return (
       <div id="executions">
         {this.state.executions.map((execution, index) =>
-          <Execution execution={execution} key={execution.r} />
+          <Execution execution={execution} key={execution.id + "-" + execution.number} />
         )}
       </div>
     );
