@@ -56,20 +56,22 @@ class Reflection extends React.Component {
           <span className="title">{this.props.reflection[C.CLASS]}</span>
           <span className="method">{this.props.reflection[C.METHOD]}()</span>
 
-          <div className="actions">
+          {( this.props.reflection[C.BASE_ID] != null ?
+            <div className="actions">
 
-            <button
-              className={"keep " + (this.context ? "enabled" : "disabled")}
-              onClick={(event) => this.keep(this.props.reflection[C.REF_ID], event)}
-            >Keep
-            </button>
+              <button
+                className={"keep " + (this.context ? "enabled" : "disabled")}
+                onClick={(event) => this.keep(this.props.reflection[C.REF_ID], event)}
+              >Keep
+              </button>
 
-            <button
-              className={"delete " + (this.context ? "enabled" : "disabled")}
-              onClick={(event) => this.delete(this.props.reflection[C.REF_ID], event)}
-            >Delete</button>
+              <button
+                className={"delete " + (this.context ? "enabled" : "disabled")}
+                onClick={(event) => this.delete(this.props.reflection[C.REF_ID], event)}
+              >Delete</button>
 
-          </div>
+            </div>
+          : null )}
 
         </div>
 
