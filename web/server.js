@@ -38,19 +38,20 @@ var load_db = () => {
 app.post('/executions/delete', (req, res) => {
 
   // Get reflection ID.
-  exe_id = req.body.exe_id;
+  var exe_id = req.body.exe_id;
+  var number = req.body.number;
+  console.log(number);
 
   // Get database.
   db = load_db();
 
-  // Delete reflections matching base execution.
   for (let [index, reflection] of db.reflections.entries()) {
-    if (reflection.e == exe_id) {
+    if (reflection.e == exe_id && reflection.n == number) {
       console.log("DELETED:")
       console.log(db.reflections[index]);
       db.reflections.splice(index, 1);
     }
-    if (reflection.b != null && reflection.b == exe_id) {
+    if (reflection.b != null && reflection.b == exe_id && reflection.n == number) {
       console.log("DELETED:")
       console.log(db.reflections[index]);
       db.reflections.splice(index, 1);

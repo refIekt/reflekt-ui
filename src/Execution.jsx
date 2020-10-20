@@ -30,14 +30,14 @@ class Execution extends React.Component {
 
   };
 
-  keep = (exe_id, event) => {
+  keep = (exe_id, number, event) => {
 
     // Prevent toggle.
     event.stopPropagation();
 
   }
 
-  delete = (exe_id, event) => {
+  delete = (exe_id, number, event) => {
 
     // Prevent toggle.
     event.stopPropagation();
@@ -46,7 +46,7 @@ class Execution extends React.Component {
     const requestOptions = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ exe_id: exe_id })
+      body: JSON.stringify({ exe_id: exe_id, number: number })
     };
 
     // Send request.
@@ -76,13 +76,13 @@ class Execution extends React.Component {
 
             <button
               className={"keep " + (this.context ? "enabled" : "disabled")}
-              onClick={(event) => this.keep(this.props.execution.id, event)}
+              onClick={(event) => this.keep(this.props.execution.id, this.props.execution.number, event)}
             >Keep
             </button>
 
             <button
               className={"delete " + (this.context ? "enabled" : "disabled")}
-              onClick={(event) => this.delete(this.props.execution.id, event)}
+              onClick={(event) => this.delete(this.props.execution.id, this.props.execution.number, event)}
             >Delete</button>
 
           </div>
