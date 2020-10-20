@@ -12,26 +12,34 @@ class Execution extends React.Component {
 
   constructor(props) {
     super(props);
+
     // Default state.
-    this.state = {open: false};
-    // Ensure toggle() has correct this.
-    this.toggle = this.toggle.bind(this);
+    this.state = {
+      open: false,
+      status: props.execution.status,
+      hidden: false
+    };
+
   }
 
-  toggle() {
+  toggle = () => {
+
     this.setState(state => ({
       open: !state.open
     }));
+
   };
 
   keep = (exe_id, event) => {
 
+    // Prevent toggle.
     event.stopPropagation();
 
   }
 
   delete = (exe_id, event) => {
 
+    // Prevent toggle.
     event.stopPropagation();
 
     // Build request.
@@ -57,7 +65,7 @@ class Execution extends React.Component {
   render() {
     var options = {year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit'};
     return (
-      <div className={"execution " + this.props.execution.status + " " + (this.state.open ? 'open' : 'closed')}>
+      <div className={"execution " + this.state.status + " " + (this.state.open ? 'open' : 'closed') + (this.state.hidden ? ' hidden' : ' visible')}>
 
         <div className="execution--summary" onClick={this.toggle}>
 
