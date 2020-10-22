@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { hot } from "react-hot-loader";
-import * as C from './Constants';
 import '../styles/_io.scss'
 
 class IO extends React.Component {
@@ -15,16 +14,13 @@ class IO extends React.Component {
         <h4>{this.props.title}:</h4>
         <div className="io-items">
           <div className="io-item">
-            <label>Type:</label> {this.props.io[C.TYPE]}
+            <label>Type:</label> {this.props.io["type"]}
           </div>
-          {(this.props.io[C.COUNT] != null ?
+          {(this.props.io["count"] != null ?
             <div className="io-item">
-              <label>Count:</label> {this.props.io[C.COUNT]}
+              <label>Count:</label> {this.props.io["count"]}
             </div>
           : null )}
-          <div className="io-item">
-            <label>Value:</label> <pre>{this.props.io[C.VALUE]}</pre>
-          </div>
         </div>
       </div>
     );

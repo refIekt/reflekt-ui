@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { hot } from "react-hot-loader";
-import * as C from './Constants';
 import Execution from "./Execution"
 
 class Executions extends React.Component {
@@ -20,26 +19,26 @@ class Executions extends React.Component {
     reflections.forEach((reflection) => {
 
       // When base reflection.
-      if (reflection.b == null) {
+      if (reflection.base_id == null) {
         // Create execution from base reflection.
-        var key = `${reflection.e}-${reflection.n}`
+        var key = `${reflection.exe_id}-${reflection.ref_num}`
         executions[key] = {
-          id: reflection.e,
-          number: reflection.n,
+          id: reflection.exe_id,
+          number: reflection.ref_num,
           status: 'pass',
-          timestamp: reflection.t,
+          timestamp: reflection.time,
           reflections: [reflection],
         }
       }
       // When child reflection.
       else {
         // Add reflection to execution.
-        var key = `${reflection.b}-${reflection.n}`
+        var key = `${reflection.base_id}-${reflection.ref_num}`
         executions[key]['reflections'].push(reflection)
       }
 
       // Flag execution as failed when a reflection fails.
-      if (reflection[C.STATUS] == C.FAIL) {
+      if (reflection["status"] == "fail") {
         executions[key]['status'] = 'fail';
       }
     });

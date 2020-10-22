@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { hot } from "react-hot-loader";
-import * as C from './Constants';
 import * as Contexts from './Contexts';
 import IO from './IO';
 import '../styles/_reflection.scss'
@@ -14,7 +13,7 @@ class Reflection extends React.Component {
     super(props);
 
     this.state = {
-      status: (props.reflection[C.STATUS] == C.PASS ? "pass" : "fail"),
+      status: props.reflection["status"],
       hidden: false
     }
   }
@@ -22,7 +21,6 @@ class Reflection extends React.Component {
   keep = (id, event) => {
     console.log(id);
     console.log(event);
-    console.log(d);
   }
 
   delete = (ref_id, event) => {
@@ -53,21 +51,21 @@ class Reflection extends React.Component {
 
         <div className="reflection--summary">
 
-          <span className="title">{this.props.reflection[C.CLASS]}</span>
-          <span className="method">{this.props.reflection[C.METHOD]}()</span>
+          <span className="title">{this.props.reflection["class"]}</span>
+          <span className="method">{this.props.reflection["method"]}()</span>
 
-          {( this.props.reflection[C.BASE_ID] != null ?
+          {( this.props.reflection["base_id"] != null ?
             <div className="actions">
 
               <button
                 className={"keep " + (this.context ? "enabled" : "disabled")}
-                onClick={(event) => this.keep(this.props.reflection[C.REF_ID], event)}
+                onClick={(event) => this.keep(this.props.reflection["ref_id"], event)}
               >Keep
               </button>
 
               <button
                 className={"delete " + (this.context ? "enabled" : "disabled")}
-                onClick={(event) => this.delete(this.props.reflection[C.REF_ID], event)}
+                onClick={(event) => this.delete(this.props.reflection["ref_id"], event)}
               >Delete</button>
 
             </div>
@@ -78,13 +76,13 @@ class Reflection extends React.Component {
         <div className="reflection--details">
 
           <div className="ios">
-            {this.props.reflection[C.INPUT].map((input, index) => {
+            {this.props.reflection["input"].map((input, index) => {
               <IO io={input} title="Input" key={index}/>
             })}
           </div>
 
           <div className="ios">
-            <IO io={this.props.reflection[C.OUTPUT]} title="Output" />
+            <IO io={this.props.reflection["output"]} title="Output" />
           </div>
 
         </div>

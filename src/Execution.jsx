@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { hot } from "react-hot-loader";
-import * as C from './Constants';
 import * as Contexts from './Contexts';
 import Reflection from "./Reflection"
 import '../styles/_execution.scss'
