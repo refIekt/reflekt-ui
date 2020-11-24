@@ -6,6 +6,8 @@ class Meta extends React.Component {
 
   constructor(props) {
     super(props);
+
+    console.log(this.props);
   }
 
   render() {
@@ -27,4 +29,4 @@ class Meta extends React.Component {
   }
 }
 
-export default hot(module)(IO);
+export default hot(module)(Meta);
