@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { hot } from "react-hot-loader";
 import * as Contexts from './Contexts';
-import IO from './IO';
+import Meta from './Meta';
 import '../styles/_reflection.scss'
 import '../styles/_actions.scss'
 
@@ -75,14 +75,14 @@ class Reflection extends React.Component {
 
         <div className="reflection--details">
 
-          <div className="ios">
-            {this.props.reflection["input"].map((input, index) => {
-              <IO io={input} title="Input" key={index}/>
+          <div className="metas">
+            {this.props.reflection["input"].map((meta, index) => {
+              <Meta meta={input} title="Input" key={index}/>
             })}
           </div>
 
-          <div className="ios">
-            <IO io={this.props.reflection["output"]} title="Output" />
+          <div className="metas">
+            <Meta meta={this.props.reflection["output"]} title="Output" />
           </div>
 
         </div>
