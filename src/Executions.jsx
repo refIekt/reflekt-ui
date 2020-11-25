@@ -38,7 +38,7 @@ class Executions extends React.Component {
       }
 
       // Flag execution as failed when a reflection fails.
-      if (reflection["status"] == "fail") {
+      if (reflection['status'] == 'fail') {
         executions[key]['status'] = 'fail';
       }
     });

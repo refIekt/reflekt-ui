@@ -9,6 +9,10 @@ class Reflection extends React.Component {
 
   static contextType = Contexts.WriteModeContext;
 
+  ////
+  // STATE.
+  ////
+
   constructor(props) {
     super(props);
 
@@ -17,6 +21,14 @@ class Reflection extends React.Component {
       hidden: false
     }
   }
+
+  hide = (ref_id) => {
+    this.setState({hidden: true});
+  }
+
+  ////
+  // ACTIONS.
+  ////
 
   keep = (id, event) => {
     console.log(id);
@@ -34,15 +46,9 @@ class Reflection extends React.Component {
 
     // Send request.
     fetch('/reflections/delete', requestOptions)
-    //  .then(response => response.json())
-    //  .then(data => this.setState({ postId: data.id }));
+      // Update UI.
+      .then(response => this.hide(ref_id))
 
-    // Update UI.
-    this.hide(ref_id);
-  }
-
-  hide = (ref_id) => {
-    this.setState({hidden: true});
   }
 
   render() {
@@ -75,14 +81,17 @@ class Reflection extends React.Component {
 
         <div className="reflection--details">
 
-          <div className="metas">
-            {this.props.reflection["input"].map((meta, index) => {
-              <Meta meta={input} title="Input" key={index}/>
-            })}
+          <div className="inputs">
+            <h4>Input</h4>
+            {console.log("INPUTS:")}
+            {this.props.reflection["inputs"].map((meta, index) =>
+              <Meta meta={meta} key={`meta-${index}`} />
+            )}
           </div>
 
-          <div className="metas">
-            <Meta meta={this.props.reflection["output"]} title="Output" />
+          <div className="output">
+            <h4>Output</h4>
+            <Meta meta={this.props.reflection["output"]} />
           </div>
 
         </div>
