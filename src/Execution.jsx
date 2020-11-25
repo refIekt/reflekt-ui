@@ -91,7 +91,7 @@ class Execution extends React.Component {
         <div className="execution--details">
 
           {(this.state.open ? this.props.execution.reflections.map((reflection, index) =>
-            <Reflection reflection={reflection} key={reflection.r} />
+            <Reflection reflection={reflection} key={`reflection-${reflection.ref_id}`} />
           ) : null )}
 
         </div>
