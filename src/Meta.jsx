@@ -14,7 +14,7 @@ class Meta extends React.Component {
         {(this.props.meta != null ?
           <ul className="meta-attributes">
             {Object.entries(this.props.meta).map((key) =>
-              <li className="meta-attribute">
+              <li className="meta-attribute" key={`meta-attribute-${key}`}>
                 <span className="label">{key}</span>
                 <span className="value">{this.props.meta[key]}</span>
               </li>
