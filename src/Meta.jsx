@@ -12,16 +12,16 @@ class Meta extends React.Component {
     return (
       <div className="meta">
         {(this.props.meta != null ?
-          <ul className="meta-attributes">
-            {Object.entries(this.props.meta).map((key) =>
+          <ul className="meta__attributes">
+            {Object.entries(this.props.meta).map(([key, value]) =>
               <li className="meta-attribute" key={`meta-attribute-${key}`}>
-                <span className="label">{key}</span>
+                <label>{key}:</label>
                 <span className="value">{this.props.meta[key]}</span>
               </li>
             )}
           </ul>
         :
-          <strong className="empty">Empty</strong>
+          <strong className="meta-empty">empty</strong>
         )}
       </div>
     );

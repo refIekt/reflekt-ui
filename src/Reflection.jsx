@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import { hot } from "react-hot-loader";
 import * as Contexts from './Contexts';
+
 import Meta from './Meta';
 import '../styles/_reflection.scss'
 import '../styles/_actions.scss'
+import '../styles/_io.scss'
 
 class Reflection extends React.Component {
 
@@ -81,7 +83,7 @@ class Reflection extends React.Component {
 
         <div className="reflection--details">
 
-          <div className="inputs">
+          <div className="io" id="inputs">
             <h4>Input</h4>
             {console.log("INPUTS:")}
             {this.props.reflection["inputs"].map((meta, index) =>
@@ -89,7 +91,7 @@ class Reflection extends React.Component {
             )}
           </div>
 
-          <div className="output">
+          <div className="io" id="output">
             <h4>Output</h4>
             <Meta meta={this.props.reflection["output"]} />
           </div>

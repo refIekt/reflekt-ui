@@ -1,28 +1,18 @@
 .meta {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  padding: 0.5rem 0.75rem;
-  border: 1px solid #aaa;
-  border-radius: 5px;
   &:not(:last-child) {
     margin-right: 0.5rem;
   }
-  h4 {
-    margin: 0;
-    color: #777777;
-    font-size: 1.2rem;
-    font-weight: normal;
-    margin-right: 1rem;
-  }
 }
 
-.meta-items {
+.meta__attributes {
   display: flex;
   flex-direction: row;
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
 }
 
-.meta-item {
+.meta-attribute {
   padding-left: 1rem;
   padding-right: 1rem;
   border-right: 1px solid #ccc;
@@ -36,9 +26,15 @@
   label {
     display: block;
     font-weight: bold;
+    text-transform: capitalize;
     padding-bottom: 0.1rem;
   }
   pre {
     margin: 0;
   }
+}
+
+.meta-empty {
+  color: #555;
+  font-style: italic;
 }
