@@ -50,7 +50,7 @@ class Executions extends React.Component {
     });
 
     // Sort executions.
-    var sorted_executions = unsorted_executions.sort((a, b) => a.timestamp > b.timestamp ? 1 : -1);
+    var sorted_executions = unsorted_executions.sort((a, b) => a.timestamp < b.timestamp ? 1 : -1);
 
     // Save executions.
     this.state.executions = sorted_executions;

@@ -3,7 +3,7 @@
 A React app that renders reflections in a `/reflections` directory.
 
 The application has two modes:
-1. Without a server for a zero setup experience
+1. 100% client-side for a zero setup experience
 2. With a server for the ability to delete and keep reflections
 
 ## Development
