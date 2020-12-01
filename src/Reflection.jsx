@@ -50,7 +50,6 @@ class Reflection extends React.Component {
     fetch('/reflections/delete', requestOptions)
       // Update UI.
       .then(response => this.hide(ref_id))
-
   }
 
   render() {

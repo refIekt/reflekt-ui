@@ -23,6 +23,12 @@ class App extends Component {
     this.state.results = []
     this.state.writeMode = false
 
+    // TypeSwitch.
+    this.state.types = {
+      reflection: {title: "Reflections", active: true},
+      control: {title: "Controls", active: false}
+    }
+
     // Activate write mode.
     if (window.location.protocol != "file:") {
       this.state.writeMode = true;
@@ -54,6 +60,29 @@ class App extends Component {
 
   }
 
+  switchType = (new_type) => {
+
+    // Build new types.
+    var newTypes = {}
+
+    Object.entries(this.state.types).forEach(function([type, values], index) {
+
+      // Activate new type.
+      if (type === new_type) {
+        values['active'] = true
+      }
+      // Deactivate old type.
+      else {
+        values['active'] = false
+      }
+
+      newTypes[type] = values
+    })
+
+    // Set new types.
+    this.setState({types: newTypes});
+  }
+
   ////
   // UI.
   ////
@@ -64,7 +93,7 @@ class App extends Component {
       <>
         <Contexts.WriteModeContext.Provider value={this.state.writeMode}>
 
-          <Header />
+          <Header types={this.state.types} switchType={this.switchType} />
 
           <div className="container">
             <main id="content">

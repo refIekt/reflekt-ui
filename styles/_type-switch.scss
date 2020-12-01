@@ -1,0 +1,29 @@
+.type-switch {
+  // Center align.
+  margin: 0 auto;
+  button {
+    font-size: 0.95rem;
+    font-weight: bold;
+    background: white;
+    text-shadow: 1px 1px 1px #F8F8F8;
+    padding: 1rem 1.5rem;
+    border: none;
+    border-radius: 0;
+    &:hover {
+      cursor: pointer;
+    }
+    &.active {
+      color: white;
+      background: #333;
+      text-shadow: 1px 1px 1px black;
+    }
+    &:first-child {
+      border-top-left-radius: 5px;
+      border-bottom-left-radius: 5px;
+    }
+    &:last-child {
+      border-top-right-radius: 5px;
+      border-bottom-right-radius: 5px;
+    }
+  }
+}
