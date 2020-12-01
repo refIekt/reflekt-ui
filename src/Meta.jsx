@@ -21,7 +21,7 @@ class Meta extends React.Component {
             )}
           </ul>
         :
-          <strong className="meta-empty">empty</strong>
+          <strong className="meta-none">none</strong>
         )}
       </div>
     );

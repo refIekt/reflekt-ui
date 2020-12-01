@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { hot } from "react-hot-loader";
-import Execution from "./Execution"
+import ReflectionExecution from "./ReflectionExecution"
 
-class Executions extends React.Component {
+class ReflectionExecutions extends React.Component {
 
   constructor(props) {
     super(props);
@@ -52,9 +52,8 @@ class Executions extends React.Component {
     // Sort executions.
     var sorted_executions = unsorted_executions.sort((a, b) => a.timestamp < b.timestamp ? 1 : -1);
 
-    // Save executions.
+    // Set executions.
     this.state.executions = sorted_executions;
-    console.log(sorted_executions);
 
   }
 
@@ -62,11 +61,11 @@ class Executions extends React.Component {
     return (
       <div id="executions">
         {this.state.executions.map((execution, index) =>
-          <Execution execution={execution} key={execution.id + "-" + execution.number} />
+          <ReflectionExecution execution={execution} key={execution.id + "-" + execution.number} />
         )}
       </div>
     );
   }
 }
 
-export default hot(module)(Executions);
+export default hot(module)(ReflectionExecutions);

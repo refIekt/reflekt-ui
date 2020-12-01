@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { hot } from "react-hot-loader";
 import * as Contexts from './Contexts';
-import Reflection from "./Reflection"
+import Control from "./Control"
 import '../styles/_execution.scss'
 import '../styles/_actions.scss'
 
-class Execution extends React.Component {
+class ControlExecution extends React.Component {
 
   static contextType = Contexts.WriteModeContext;
 
@@ -15,28 +15,18 @@ class Execution extends React.Component {
     // Default state.
     this.state = {
       open: false,
-      status: props.execution.status,
       hidden: false
     };
 
   }
 
   toggle = () => {
-
     this.setState(state => ({
       open: !state.open
     }));
-
   };
 
-  keep = (exe_id, number, event) => {
-
-    // Prevent toggle.
-    event.stopPropagation();
-
-  }
-
-  delete = (exe_id, number, event) => {
+  delete_controls = (exe_id, event) => {
 
     // Prevent toggle.
     event.stopPropagation();
@@ -45,16 +35,14 @@ class Execution extends React.Component {
     const requestOptions = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ exe_id: exe_id, number: number })
+      body: JSON.stringify({ exe_id: exe_id })
     };
 
     // Send request.
-    fetch('/executions/delete', requestOptions)
-    //  .then(response => response.json())
-    //  .then(data => this.setState({ postId: data.id }));
+    fetch('/controls/delete', requestOptions)
+      // Update UI.
+      .then(response => this.hide(exe_id))
 
-    // Update UI.
-    this.hide(exe_id);
   }
 
   hide = (exe_id) => {
@@ -64,34 +52,26 @@ class Execution extends React.Component {
   render() {
     var options = {year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit'};
     return (
-      <div className={"execution " + this.state.status + " " + (this.state.open ? 'open' : 'closed') + (this.state.hidden ? ' hidden' : ' visible')}>
+      <div className={`execution neutral ${(this.state.open ? 'open' : 'closed')} ${(this.state.hidden ? ' hidden' : ' visible')}`}>
 
         <div className="execution--summary" onClick={this.toggle}>
 
           <div className="timestamp">{new Intl.DateTimeFormat('default', options).format(this.props.execution.timestamp * 1000)}</div>
-          <div className="status">{this.props.execution.status}</div>
 
           <div className="actions">
-
-            <button
-              className={"keep " + (this.context ? "enabled" : "disabled")}
-              onClick={(event) => this.keep(this.props.execution.id, this.props.execution.number, event)}
-            >Keep
-            </button>
-
             <button
               className={"delete " + (this.context ? "enabled" : "disabled")}
-              onClick={(event) => this.delete(this.props.execution.id, this.props.execution.number, event)}
+              onClick={(event) => this.delete_controls(this.props.execution.id, event)}
             >Delete</button>
-
           </div>
 
         </div>
 
         <div className="execution--details">
 
-          {(this.state.open ? this.props.execution.reflections.map((reflection, index) =>
-            <Reflection reflection={reflection} key={`reflection-${reflection.ref_id}`} />
+          {/* List controls in an accordion for this execution. */}
+          {(this.state.open ? this.props.execution.controls.map((control, index) =>
+            <Control control={control} key={`control-${control.ref_id}`} />
           ) : null )}
 
         </div>
@@ -101,4 +81,4 @@ class Execution extends React.Component {
   }
 }
 
-export default hot(module)(Execution);
+export default hot(module)(ControlExecution);

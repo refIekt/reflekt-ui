@@ -1,3 +1,5 @@
+@import '_variables.scss';
+
 .reflection {
   border-left: 5px solid #ccc;
   background: #EFEFEF;
@@ -19,15 +21,19 @@
   }
   // Status.
   &.pass {
-    border-left-color: #3eb641;
-    background-color: #c3ffbd;
+    border-left-color: $pass_color;
+    background-color: $pass_bg_color;
   }
   &.fail {
-    border-left-color: #8c3c2f;
-    background-color: #ffc6c1;
+    border-left-color: $fail_color;
+    background-color: $fail_bg_color;
+  }
+  &.neutral {
+    border-left-color: $neutral_color;
+    background-color: $neutral_bg_color;
   }
 
-  .reflection--summary {
+  .reflection__summary {
     display: flex;
     align-items: center;
     flex-direction: row;
@@ -46,7 +52,7 @@
     }
   }
 
-  .reflection--details {
+  .reflection__details {
     padding: 1rem;
     background: white;
   }

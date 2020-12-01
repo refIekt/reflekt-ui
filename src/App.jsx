@@ -5,8 +5,10 @@ import { hot } from "react-hot-loader";
 // Components.
 import * as Contexts from './Contexts';
 import Header from "./Header"
-import Executions from "./Executions"
+import ReflectionExecutions from "./ReflectionExecutions"
+import ControlExecutions from "./ControlExecutions"
 // Styles.
+import '../styles/_variables.scss'
 import '../styles/_base.scss'
 
 class App extends Component {
@@ -54,7 +56,7 @@ class App extends Component {
       console.log(this.state.db);
 
       // Process executions.
-      this.setState({results: <Executions reflections={this.state.db.reflections} />});
+      this.setState({results: <ReflectionExecutions reflections={this.state.db.reflections} />});
 
     });
 
@@ -84,10 +86,10 @@ class App extends Component {
 
     // Set results.
     if (new_type == 'reflection') {
-      this.setState({results: <Executions reflections={this.state.db.reflections} />});
+      this.setState({results: <ReflectionExecutions reflections={this.state.db.reflections} />});
     }
     else if (new_type == 'control') {
-      this.setState({results: <Executions reflections={this.state.db.controls} />});
+      this.setState({results: <ControlExecutions controls={this.state.db.controls} />});
     }
   }
 

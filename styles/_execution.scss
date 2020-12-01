@@ -1,7 +1,12 @@
+@import '_variables.scss';
+
 .execution {
   background: #333;
   margin-bottom: 1px;
   border-left: 5px solid #ccc;
+  &:hover {
+    background: #444545;
+  }
 
   // Hide animation.
   opacity: 1;
@@ -12,22 +17,26 @@
     max-height: 0;
   }
 
-  &:hover {
-    background: #444545;
-  }
   // Status.
   &.pass {
-    border-left-color: #3eb641;
+    border-left-color: $pass_color;
     .status {
-      color: #3eb641;
+      color: $pass_color;
     }
   }
   &.fail {
-    border-left-color: #8c3c2f;
+    border-left-color: $fail_color;
     .status {
-      color: #8c3c2f;
+      color: $fail_color;
     }
   }
+  &.neutral {
+    border-left-color: $neutral_color;
+    .status {
+      color: $neutral_color;
+    }
+  }
+
   // Toggle.
   &.open {
     background: #333;
@@ -49,9 +58,9 @@
     color: white;
   }
   .status {
+    margin-left: auto;
     font-weight: bold;
     text-transform: uppercase;
-    margin: 0 auto;
   }
 }
 
