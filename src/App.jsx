@@ -81,6 +81,14 @@ class App extends Component {
 
     // Set new types.
     this.setState({types: newTypes});
+
+    // Set results.
+    if (new_type == 'reflection') {
+      this.setState({results: <Executions reflections={this.state.db.reflections} />});
+    }
+    else if (new_type == 'control') {
+      this.setState({results: <Executions reflections={this.state.db.controls} />});
+    }
   }
 
   ////

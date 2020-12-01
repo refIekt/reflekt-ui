@@ -18,7 +18,7 @@ npm run start
 
 2. Visit `/web/index.html` directly in your browser.
 
-3. To speed up development with hot reloading visit:
+3. To speed up development with hot reloading and React Dev Tools visit:
    http://localhost:3000/
 
 ### Read/Write Mode
