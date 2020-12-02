@@ -6,8 +6,6 @@ class TypeSwitch extends React.Component {
 
   constructor(props) {
     super(props);
-
-    console.log(Object.entries(this.props.types));
   }
 
   activate = (type, event) => {
