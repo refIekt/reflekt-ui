@@ -72,14 +72,22 @@ class Control extends React.Component {
 
           <div className="io" id="inputs">
             <h4>Input</h4>
-            {this.props.control["inputs"].map((meta, index) =>
-              <Meta meta={meta} key={`meta-${index}`} />
-            )}
+            {this.props.control["inputs"] != null ?
+              this.props.control["inputs"].map((meta, index) =>
+                <Meta meta={meta} key={`meta-${index}`} />
+              )
+            :
+              <strong className="meta-none">none</strong>
+            }
           </div>
 
           <div className="io" id="output">
             <h4>Output</h4>
-            <Meta meta={this.props.control["output"]} />
+            {this.props.control["output"] != null ?
+              <Meta meta={this.props.control["output"]} />
+            :
+              <strong className="meta-none">none</strong>
+            }
           </div>
 
         </div>

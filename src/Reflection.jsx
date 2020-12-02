@@ -42,14 +42,22 @@ class Reflection extends React.Component {
 
           <div className="io" id="inputs">
             <h4>Input</h4>
-            {this.props.reflection["inputs"].map((meta, index) =>
-              <Meta meta={meta} key={`meta-${index}`} />
-            )}
+            {this.props.reflection["inputs"] != null ?
+              this.props.reflection["inputs"].map((meta, index) =>
+                <Meta meta={meta} key={`meta-${index}`} />
+              )
+            :
+              <strong className="meta-none">none</strong>
+            }
           </div>
 
           <div className="io" id="output">
             <h4>Output</h4>
-            <Meta meta={this.props.reflection["output"]} />
+            {this.props.reflection["output"] != null ?
+              <Meta meta={this.props.reflection["output"]} />
+            :
+              <strong className="meta-none">none</strong>
+            }
           </div>
 
         </div>
