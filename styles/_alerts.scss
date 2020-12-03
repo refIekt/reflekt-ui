@@ -1,0 +1,15 @@
+@import '_variables.scss';
+
+.alert {
+  padding: 1rem;
+  background: $neutral_bg_color;
+  border: 1px solid $neutral_color;
+  &.error {
+    background: $fail_bg_color;
+    border: 1px solid $fail_color;
+  }
+  &.success {
+    background: $pass_bg_color;
+    border: 1px solid $pass_color;
+  }
+}

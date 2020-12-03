@@ -4,6 +4,7 @@ import { render } from "react-dom";
 import { hot } from "react-hot-loader";
 // Components.
 import * as Contexts from './Contexts';
+import Alerts from "./Alerts"
 import Header from "./Header"
 import ReflectionExecutions from "./ReflectionExecutions"
 import ControlExecutions from "./ControlExecutions"
@@ -22,6 +23,7 @@ class App extends Component {
 
     this.state = {}
     this.state.db = {}
+    this.state.alerts = []
     this.state.results = []
     this.state.writeMode = false
 
@@ -50,16 +52,36 @@ class App extends Component {
 
     window.addEventListener('load', (event) => {
 
-      // Get data.
-      this.setState({db: JSON.parse(db)});
-      console.log("DATA:");
-      console.log(this.state.db);
+      // Get database.
+      try {
+        // "db" is a global variable provided by db.js which index.html loads.
+        this.setState({db: JSON.parse(db)});
+        console.log("DATA:");
+        console.log(this.state.db);
+      }
+      catch (error) {
+        this.addAlert("error", "Couldn't load database.")
+      }
 
       // Process executions.
-      this.setState({results: <ReflectionExecutions reflections={this.state.db.reflections} />});
+      if (db != undefined) {
+        this.setState({results: <ReflectionExecutions reflections={this.state.db.reflections} />});
+      }
 
     });
 
+  }
+
+  addAlert = (type, message) => {
+    // Build alert.
+    var alert = {
+      type: type,
+      message: message
+    }
+    // Add alert.
+    var alerts = this.state.alerts
+    alerts.push(alert)
+    this.setState({alerts: alerts})
   }
 
   switchType = (new_type) => {
@@ -106,9 +128,15 @@ class App extends Component {
           <Header types={this.state.types} switchType={this.switchType} />
 
           <div className="container">
+
+            {this.state.alerts.length != 0 ?
+              <Alerts alerts={this.state.alerts} />
+            : null }
+
             <main id="content">
               {this.state.results}
             </main>
+
           </div>
         </Contexts.WriteModeContext.Provider>
       </>
