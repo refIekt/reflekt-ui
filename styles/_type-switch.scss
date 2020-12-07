@@ -1,6 +1,13 @@
+@import '_variables.scss';
+
 .type-switch {
-  // Center align.
-  margin: 0 auto;
+  @media (min-width: $mobile_and_up) {
+    // Center align type switch.
+    position: absolute;
+    left: 0;
+    right: 0;
+    text-align: center;
+  }
   button {
     font-size: 0.95rem;
     font-weight: bold;

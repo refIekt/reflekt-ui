@@ -52,6 +52,8 @@
   justify-content: space-between;
   padding: 1rem;
   padding-left: 11px;
+  // Center align control label.
+  position: relative;
   &:hover {
     cursor: pointer;
   }
@@ -62,9 +64,15 @@
     font-weight: bold;
     color: $neutral_color;
     text-transform: uppercase;
+    @media (min-width: $mobile_and_up) {
+      // Center align control label.
+      position: absolute;
+      left: 0;
+      right: 0;
+      text-align: center;
+    }
   }
   .status {
-    width: 3rem;
     text-align: right;
     font-weight: bold;
     text-transform: uppercase;
