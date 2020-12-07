@@ -3,7 +3,9 @@
 .execution {
   background: #333;
   margin-bottom: 1px;
-  border-left: 5px solid #ccc;
+  border-left: 10px solid #ccc;
+  padding-left: 2px;
+  padding-right: 12px;
   &:hover {
     background: #444545;
   }
@@ -50,8 +52,8 @@
   align-items: center;
   flex-direction: row;
   justify-content: space-between;
-  padding: 1rem;
-  padding-left: 11px;
+  padding: 1rem 0;
+  padding-left: 10px;
   // Center align control label.
   position: relative;
   &:hover {
