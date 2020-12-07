@@ -29,6 +29,11 @@ class ReflectionExecutions extends React.Component {
           timestamp: reflection.time,
           reflections: [reflection],
         }
+        // Flag when reflection is a control.
+        executions[key]['is_control'] = false
+        if (reflection.ref_num === 0) {
+          executions[key]['is_control'] = true
+        }
       }
       // When child reflection.
       else {

@@ -56,7 +56,11 @@ class ControlExecution extends React.Component {
 
         <div className="execution--summary" onClick={this.toggle}>
 
-          <div className="timestamp">{new Intl.DateTimeFormat('default', options).format(this.props.execution.timestamp * 1000)}</div>
+          <div className="timestamp">
+            {new Intl.DateTimeFormat('default', options).format(this.props.execution.timestamp * 1000)}
+          </div>
+
+          <div className="control-label">Control</div>
 
           <div className="actions">
             <button

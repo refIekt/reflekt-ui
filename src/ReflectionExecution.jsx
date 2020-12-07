@@ -37,7 +37,14 @@ class ReflectionExecution extends React.Component {
 
         <div className="execution--summary" onClick={this.toggle}>
 
-          <div className="timestamp">{new Intl.DateTimeFormat('default', options).format(this.props.execution.timestamp * 1000)}</div>
+          <div className="timestamp">
+            {new Intl.DateTimeFormat('default', options).format(this.props.execution.timestamp * 1000)}
+          </div>
+
+          {this.props.execution.is_control ?
+            <div className="control-label">Control</div>
+          : null }
+
           <div className="status">{this.props.execution.status}</div>
 
         </div>
