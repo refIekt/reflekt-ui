@@ -66,6 +66,7 @@
     font-weight: bold;
     color: $neutral_color;
     text-transform: uppercase;
+    pointer-events: none;
     @media (min-width: $mobile_and_up) {
       // Center align control label.
       position: absolute;
