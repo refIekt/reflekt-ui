@@ -18,20 +18,19 @@ class ControlExecutions extends React.Component {
     var executions = {};
     controls.forEach((control) => {
 
-      // When base control.
-      if (control.base_id == null) {
-        // Create execution from base control.
-        executions[control.exe_id] = {
-          id: control.exe_id,
+      // Create group.
+      if (!executions.hasOwnProperty(control.eid)) {
+        executions[control.eid] = {
+          id: control.eid,
           status: 'pass',
           timestamp: control.time,
           controls: [control],
         }
       }
-      // When child control.
+      // Add to group.
       else {
         // Add control to execution.
-        executions[control.base_id]['controls'].push(control)
+        executions[control.eid]['controls'].push(control)
       }
 
     });

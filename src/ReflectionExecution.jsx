@@ -26,7 +26,7 @@ class ReflectionExecution extends React.Component {
     }));
   };
 
-  hide = (exe_id) => {
+  hide = (aid) => {
     this.setState({hidden: true});
   }
 
@@ -42,7 +42,7 @@ class ReflectionExecution extends React.Component {
           </div>
 
           {this.props.execution.is_control ?
-            <div className="control-label">Control</div>
+            <div className="control-label">New Control</div>
           : null }
 
           <div className="status">{this.props.execution.status}</div>
@@ -53,7 +53,7 @@ class ReflectionExecution extends React.Component {
 
           {/* List reflections in an accordion for this execution. */}
           {(this.state.open ? this.props.execution.reflections.map((reflection, index) =>
-            <Reflection reflection={reflection} key={`reflection-${reflection.ref_id}`} />
+            <Reflection reflection={reflection} key={`reflection-${reflection.rid}`} />
           ) : null )}
 
         </div>

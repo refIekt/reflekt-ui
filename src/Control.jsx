@@ -23,7 +23,7 @@ class Control extends React.Component {
     }
   }
 
-  hide = (ref_id) => {
+  hide = (rid) => {
     this.setState({hidden: true});
   }
 
@@ -31,19 +31,19 @@ class Control extends React.Component {
   // ACTIONS.
   ////
 
-  delete = (ref_id, event) => {
+  delete = (rid, event) => {
 
     // Build request.
     const requestOptions = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ ref_id: ref_id })
+      body: JSON.stringify({ rid: rid })
     };
 
     // Send request.
     fetch('/control/delete', requestOptions)
       // Update UI.
-      .then(response => this.hide(ref_id))
+      .then(response => this.hide(rid))
   }
 
   render() {
@@ -55,12 +55,12 @@ class Control extends React.Component {
           <span className="title">{this.props.control["class"]}</span>
           <span className="method">{this.props.control["method"]}()</span>
 
-          {( this.props.control["base_id"] != null ?
+          {( this.props.control["eid"] != null ?
             <div className="actions">
 
               <button
                 className={"delete " + (this.context ? "enabled" : "disabled")}
-                onClick={(event) => this.delete(this.props.control["ref_id"], event)}
+                onClick={(event) => this.delete(this.props.control["rid"], event)}
               >Delete</button>
 
             </div>

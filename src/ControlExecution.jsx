@@ -26,7 +26,7 @@ class ControlExecution extends React.Component {
     }));
   };
 
-  delete_controls = (exe_id, event) => {
+  delete_controls = (aid, event) => {
 
     // Prevent toggle.
     event.stopPropagation();
@@ -35,17 +35,17 @@ class ControlExecution extends React.Component {
     const requestOptions = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ exe_id: exe_id })
+      body: JSON.stringify({ aid: aid })
     };
 
     // Send request.
     fetch('/controls/delete', requestOptions)
       // Update UI.
-      .then(response => this.hide(exe_id))
+      .then(response => this.hide(aid))
 
   }
 
-  hide = (exe_id) => {
+  hide = (aid) => {
     this.setState({hidden: true});
   }
 
@@ -75,7 +75,7 @@ class ControlExecution extends React.Component {
 
           {/* List controls in an accordion for this execution. */}
           {(this.state.open ? this.props.execution.controls.map((control, index) =>
-            <Control control={control} key={`control-${control.ref_id}`} />
+            <Control control={control} key={`control-${control.rid}`} />
           ) : null )}
 
         </div>

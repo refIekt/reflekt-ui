@@ -18,34 +18,35 @@ class ReflectionExecutions extends React.Component {
     var executions = {};
     reflections.forEach((reflection) => {
 
-      // When base reflection.
-      if (reflection.base_id == null) {
-        // Create execution from base reflection.
-        var key = `${reflection.exe_id}-${reflection.ref_num}`
-        executions[key] = {
-          id: reflection.exe_id,
-          number: reflection.ref_num,
+      // Separate executions by reflection number.
+      var group_id = `${reflection.eid}-${reflection.num}`
+
+      // Create group.
+      if (!executions.hasOwnProperty(group_id)) {
+        executions[group_id] = {
+          id: reflection.eid,
+          number: reflection.num,
           status: 'pass',
           timestamp: reflection.time,
           reflections: [reflection],
         }
-        // Flag when reflection is a control.
-        executions[key]['is_control'] = false
-        if (reflection.ref_num === 0) {
-          executions[key]['is_control'] = true
+        // Flag control.
+        executions[group_id]['is_control'] = false
+        if (reflection.num === 0) {
+          executions[group_id]['is_control'] = true
         }
       }
-      // When child reflection.
+      // Add to group.
       else {
         // Add reflection to execution.
-        var key = `${reflection.base_id}-${reflection.ref_num}`
-        executions[key]['reflections'].push(reflection)
+        executions[group_id]['reflections'].push(reflection)
       }
 
       // Flag execution as failed when a reflection fails.
       if (reflection['status'] == 'fail') {
-        executions[key]['status'] = 'fail';
+        executions[group_id]['status'] = 'fail';
       }
+
     });
 
     // Convert executions to array in order to sort.

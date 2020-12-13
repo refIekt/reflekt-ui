@@ -23,7 +23,7 @@ class Reflection extends React.Component {
     }
   }
 
-  hide = (ref_id) => {
+  hide = (rid) => {
     this.setState({hidden: true});
   }
 
